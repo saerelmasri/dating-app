@@ -2,6 +2,35 @@ body{
     margin: 0;
     padding: 0;
 }
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    background-color: #E9EAE0;
+}
+header h1{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 61px;
+    margin: 0;
+}
+header ul{
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+}
+header ul li{
+    text-decoration: none;
+    list-style-type: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    cursor: pointer;
+}
 .wrapper{
     width: 100%;
     height: 100vh;
@@ -27,7 +56,7 @@ body{
     border-radius: 20px 0 0 20px;
 }
 .register-form{
-    margin-top: 5%;
+    margin-top: 2%;
     width: 60%;
     
 }
