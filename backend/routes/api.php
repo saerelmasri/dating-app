@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ExtraInfoController;
 use App\Http\Controllers\BlockedUsersController;
 use App\Http\Controllers\FavoriteUsersController;
 
@@ -15,6 +16,7 @@ Route::group([
 ], function($router){
     Route::post('/signup', [AccountController::class, 'signup']);
     Route::post('/login', [AccountController::class, 'login']);
+    Route::post('/login-extra', [ExtraInfoController::class, 'addInfo']);
     Route::get('/user-profile', [AccountController::class, 'userProfile']); 
     Route::post('/logout', [AccountController::class, 'logout']);
     
