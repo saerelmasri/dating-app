@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->text('profile_pic');
-            $table->text('profile_add1');
-            $table->text('profile_add2');
-            $table->text('profile_add3');
+            $table->text('profile_add1')->nullable();
+            $table->text('profile_add2')->nullable();
+            $table->text('profile_add3')->nullable();
             $table->foreign('user_id') -> references('id') -> on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

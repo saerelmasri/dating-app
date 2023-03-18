@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\AccountController;
 
@@ -23,4 +24,9 @@ Route::group([
     Route::get('/users', [FilterController::class, 'filter']);
 });
 
+Route::group([
+    'prefix'=>'photos'
+],function($router){
+    Route::post('/add', [PhotoController::class, 'addPhotos']);
 
+});
