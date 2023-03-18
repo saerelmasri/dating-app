@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('profile_add1');
             $table->text('profile_add2');
             $table->text('profile_add3');
-            $table->foreign('user_id') -> references('id') -> on('account')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id') -> references('id') -> on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
