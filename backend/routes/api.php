@@ -28,5 +28,7 @@ Route::group([
     'prefix'=>'photos'
 ],function($router){
     Route::post('/add', [PhotoController::class, 'addPhotos']);
+    Route::put('/update/{id}', [PhotoController::class, 'editPhotos']);
+    Route::delete('/remove/{id}', [PhotoController::class, 'removePhoto']);
 
 });
