@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlockedUsers;
 use Illuminate\Http\Request;
-use App\Models\FavoriteUsers;
 use Illuminate\Support\Facades\Validator;
 
-class FavoriteUsersController extends Controller
+class BlockedUsersController extends Controller
 {
-    public function addFavorite(Request $request){
+    public function addBlock(Request $request){
         $validator = Validator::make($request->all(),[
             'user_id'=>'required|exists:users,id',
-            'user_favorite_id'=>'required|exists:users,id',
+            'user_blocked_id'=>'required|exists:users,id',
         ]);
 
         if ($validator->fails()) {
@@ -21,19 +21,19 @@ class FavoriteUsersController extends Controller
             ], 401);
         }
 
-        $favorite = FavoriteUsers::create($validator->validated());
+        $favorite = BlockedUsers::create($validator->validated());
 
         return response()->json([
             'status' => 200,
-            'message' => 'User added to favorites successfully'
+            'message' => 'User added to blocked successfully'
         ]);
     }
 
-    public function removeFavorite(Request $request)
+    public function removeBlocked(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|exists:users,id',
-            'user_favorite_id' => 'required|exists:users,id',
+            'user_blocked_id' => 'required|exists:users,id',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -41,29 +41,29 @@ class FavoriteUsersController extends Controller
                 'message' => $validator->errors()
             ], 401);
         }
-        $favorite = FavoriteUsers::where('user_id', $request->user_id)
-            ->where('user_favorite_id', $request->user_favorite_id)
+        $blocked = BlockedUsers::where('user_id', $request->user_id)
+            ->where('user_blocked_id', $request->user_blocked_id)
             ->first();
 
-        if (!$favorite) {
+        if (!$blocked) {
             return response()->json([
                 'status' => 404,
-                'message' => 'Favorite user not found'
+                'message' => 'Blocked user not found'
             ], 404);
         }
-        $favorite->delete();
+        $blocked->delete();
         return response()->json([
             'status' => 200,
-            'message' => 'Favorite user removed successfully'
+            'message' => 'Blocked user removed successfully'
         ], 200);
     }
 
-    public function allFavorite($id){
-        $favoriteUsers = FavoriteUsers::where('user_id', $id)->get();
+    public function allBlock($id){
+        $blockUsers = BlockedUsers::where('user_id', $id)->get();
         
         return response()->json([
             'status' => 200,
-            'data' => $favoriteUsers,
+            'data' => $blockUsers,
         ]);
     }
 }

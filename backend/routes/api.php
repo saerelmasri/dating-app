@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\BlockedUsersController;
 use App\Http\Controllers\FavoriteUsersController;
 
 
@@ -34,8 +35,12 @@ Route::group([
 });
 
 Route::group([
-    'prefix'=>'favorite'
+    'prefix'=>'user'
 ], function($router){
-    Route::post('/add', [FavoriteUsersController::class, 'addFavorite']);
-    Route::post('/remove', [FavoriteUsersController::class, 'removeFavorite']);
+    Route::post('/addFavorite', [FavoriteUsersController::class, 'addFavorite']);
+    Route::post('/removeFavorite', [FavoriteUsersController::class, 'removeFavorite']);
+    Route::get('/allFavorite/{id}', [FavoriteUsersController::class, 'allFavorite']);
+    Route::post('/addBlocked', [BlockedUsersController::class, 'addBlock']);
+    Route::post('/removeBlocked', [BlockedUsersController::class, 'removeBlocked']);
+    Route::get('/allBlocked/{id}', [BlockedUsersController::class, 'allBlock']);
 });
