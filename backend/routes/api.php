@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
 
 
-Route::post('/signup', [AccountController::class, 'signup']);
-Route::post('/login', [AccountController::class, 'signup']);
-Route::get('/all', [AccountController::class, 'all']);
+Route::group([
+    'middleware'=>'api',
+    'prefix'=>'auth'
+], function($router){
+    Route::post('/signup', [AccountController::class, 'signup']);
+    Route::post('/login', [AccountController::class, 'login']);
+    Route::get('/user-profile', [AccountController::class, 'userProfile']); 
+    Route::post('/logout', [AccountController::class, 'logout']);
+});

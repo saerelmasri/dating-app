@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Account;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AccountController extends Controller
@@ -15,14 +14,6 @@ class AccountController extends Controller
         $this->middleware('auth:api', ['except' => ['login','signup']]);
     }
 
-    public function all(){
-        $account = Account::all();
-        return response()->json([
-            'status'=>200,
-            'message'=>$account
-        ],200);
-    }
-
     public function signup(Request $request){
         $validator = Validator::make($request-> all(),[
             'first_name'=>'required|max:255',
@@ -30,7 +21,7 @@ class AccountController extends Controller
             'age'=>'required|integer',
             'location'=>'required|max:255',
             'bio'=>'required|max:255',
-            'email'=>'required|email|max:255|unique:account,email',
+            'email'=>'required|email|max:255|unique:users,email',
             'password'=>'required|min:8|max:255|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
             'gender_id'=>'required|exists:gender,id',
         ]);
@@ -38,50 +29,57 @@ class AccountController extends Controller
             return response() -> json([
                 'status'=>'401',
                 'message'=>$validator->errors()
-            ],422);
+            ],400);
         }
-        $account = Account::create([
+        $user = User::create([
             'first_name'=>$request->first_name,
             'last_name'=>$request->last_name,
             'age'=>$request->age,
             'location'=>$request->location,
             'bio'=>$request->bio,
             'email'=>$request->email,
-            'password'=>Hash::make($request->passoword),
+            'password'=>bcrypt($request->password),
             'gender_id'=>$request->gender_id,
         ]);
-        $token = Auth::login($account);
-        
+
         return response() -> json([
             'status'=>'201',
-            'message'=> 'User created successfully',
-            'authorization'=> [
-                'token' => $token
-            ]
-        ]);
+            'message'=> 'User created successfully'
+        ],201);
     }
 
     public function login(Request $request){
         $validator = Validator::make($request-> all(),[
             'email'=>'required|email',
-            'password'=>'required',
+            'password'=>'required|string',
         ]);
         if($validator->fails()){
             return response() -> json([
                 'status'=>'400',
                 'message'=>$validator->errors()
-            ],400);
+            ],422);
         }
-        $credentials = $request->only('email', 'password');
-        $token =  Auth::attempt($credentials);
-     
-        return $this -> respondWithToken($token);
+        if (! $token = auth()->attempt($validator->validated())) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        return $this->createNewToken($token);
     }
 
-    protected function respondWithToken($token){
+    public function userProfile() {
+        return response()->json(auth()->user());
+    }
+
+    public function logout() {
+        auth()->logout();
+        return response()->json(['message' => 'User successfully signed out']);
+    }
+
+    protected function createNewToken($token){
         return response()->json([
-            'access_token'=>$token,
-            'token_type'=>'bearer'
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'user' => auth()->user()
         ]);
     }
 }
