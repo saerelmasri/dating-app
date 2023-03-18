@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\FavoriteUsersController;
 
 
 Route::group([
@@ -30,5 +31,11 @@ Route::group([
     Route::post('/add', [PhotoController::class, 'addPhotos']);
     Route::put('/update/{id}', [PhotoController::class, 'editPhotos']);
     Route::delete('/remove/{id}', [PhotoController::class, 'removePhoto']);
+});
 
+Route::group([
+    'prefix'=>'favorite'
+], function($router){
+    Route::post('/add', [FavoriteUsersController::class, 'addFavorite']);
+    Route::post('/remove', [FavoriteUsersController::class, 'removeFavorite']);
 });
