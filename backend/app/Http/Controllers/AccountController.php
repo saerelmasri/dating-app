@@ -42,6 +42,7 @@ class AccountController extends Controller
 
         return response() -> json([
             'status'=>201,
+            'user_id'=>$user->id,
             'message'=> 'User created successfully'
         ],201);
     }
