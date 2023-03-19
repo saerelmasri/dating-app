@@ -1,14 +1,34 @@
-const baseURL = 'http://127.0.0.1:8000/';
-const urlParams = new URLSearchParams(window.location.search);
-const user_id = urlParams.get('id');
+const jwtToken = localStorage.getItem('jwt_token');
+const baseURL ='http://127.0.0.1:8000/'
 
-const fetch = () => {
-    axios.get(baseURL + 'api/filter/list', {
-        params: {
-            exclude_user_id: 5
+axios.get(baseURL + 'api/auth/user-profile',{
+    headers: {
+        Authorization: `Bearer ${jwtToken}`
+    }
+}).then((res) => {
+    exclude_id = res.data['id'];
+    localStorage.setItem('user_id', exclude_id);
+    const markup = `<h2>${res.data['first_name']} ${res.data['last_name']}</h2>`
+    const element = document.createRange().createContextualFragment(markup);
+    document.querySelector(".info").appendChild(element);
+}).catch((err) => {
+    console.log(err);
+})
+
+const fetch = async() => {
+    const user_id = localStorage.getItem('user_id');
+    await axios({
+        method:'post',
+        url: baseURL + 'api/filter/list',
+        data: {
+            exclude_user_id: user_id 
+        },
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
         }
     }).then((res) => {
         const data = res.data.data;
+        console.log(data);
         displayUser(data);
     }).catch((err) => {
         console.log(err);
@@ -22,11 +42,14 @@ const age_input = document.querySelector('#age')
 document.querySelector('#action-filter').onclick = () => {
     document.querySelector(".users-profiles").innerHTML ='';
     document.querySelector('#action-filter').classList.add('click-button');
-    axios('http://127.0.0.1:8000/api/filter/users', {
+    axios(baseURL + 'api/filter/users', {
         params: {
             age: age_input.value || null,
             location: location_input.value || null,
             first: name_input.value || null
+        },
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
         }
     }).then((res) => {
         const data = res.data.data;
@@ -50,6 +73,8 @@ document.querySelector('#action-clear').onclick = () => {
     }
     fetch()
 }
+
+
 
 
 
