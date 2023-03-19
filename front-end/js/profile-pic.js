@@ -30,6 +30,7 @@ const uploadImage = async (user_id, profile_pic, profile_add1, profile_add2, pro
 
 save_btn.addEventListener('click', async() => {
   save_btn.classList.add('click-button')
+  window.location.href = 'login.html';
   try {
     const profilePicUrl = await uploadImage(user_id, profilePicUpload.files[0], null, null, null);
     const additional1Url = await uploadImage(user_id, null, upload_additional1.files[0], null, null);

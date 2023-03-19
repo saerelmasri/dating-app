@@ -9,7 +9,7 @@ const maleRadio = document.getElementById("male");
 const femaleRadio = document.getElementById("female");
 
 document.querySelector('#register-action').onclick = async () => {
-  document.querySelector('#register-action').classList.add('buttonAnimation');
+  document.querySelector('#register-action').classList.add('click-button');
   let genderId = null;
   if (maleRadio.checked) {
     genderId = 1;
@@ -17,7 +17,6 @@ document.querySelector('#register-action').onclick = async () => {
     genderId = 2;
   } else {
     alert("Please select your gender.");
-    return;
   }
   if(password.value !== confirm_password.value){
       alert("Password do not match");
