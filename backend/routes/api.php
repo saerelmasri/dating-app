@@ -24,12 +24,16 @@ Route::group([
     Route::post('/logout', [AccountController::class, 'logout']);
     
 });
+
+Route::post('/userById', [FilterController::class, 'getById']);
+Route::post('/userBio', [FilterController::class, 'getBio']);
 Route::middleware('jwt.verify')-> group(function(){
     Route::group([
         'prefix'=>'filter'
     ], function($router){
         Route::get('/users', [FilterController::class, 'filter']);
         Route::post('/list', [FilterController::class, 'index']);
+        
     });
 
     Route::group([

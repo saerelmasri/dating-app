@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\ExtraInfo;
 use Illuminate\Http\Request;
 
 class FilterController extends Controller
@@ -49,6 +50,46 @@ class FilterController extends Controller
             return response()->json([
                 'data' => $users,
             ])->header('Access-Control-Allow-Origin', '*');
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function getById(Request $request){
+        try {
+            $user_id = $request->input('user_id');
+            $user = User::find($user_id);
+            if (!$user) {
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'User not found'
+                ], 404);
+            }
+            return response()->json([
+                'data' => $user,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function getBio(Request $request){
+        try {
+            $user_id = $request->input('user_id');
+            $user = ExtraInfo::where('user_id', $user_id)->first();
+            if (!$user) {
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'User not found'
+                ], 404);
+            }
+            return response()->json([
+                'data' => $user,
+            ]);
         } catch (\Exception $e) {
             return response()->json([
                 'error' => $e->getMessage(),
