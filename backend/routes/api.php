@@ -28,6 +28,7 @@ Route::group([
     'prefix'=>'filter'
 ], function($router){
     Route::get('/users', [FilterController::class, 'filter']);
+    Route::get('/list', [FilterController::class, 'index']);
 });
 
 Route::group([
