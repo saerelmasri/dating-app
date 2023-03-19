@@ -178,7 +178,7 @@ body{
 .user{
     background-color: white;
     width: 25%;
-    height: 40%;
+    height: 45%;
     border-radius: 20px;
     margin-top: 1%;
 }
@@ -188,7 +188,22 @@ body{
     height: 70%;
     border-radius: 20px 20px 0 0;
 }
+.action{
+    display: flex;
+}
+.button-side{
+    display: flex;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+}
+.button-side button[type="submit"]{
+    width: 80%;
+    text-align: center;
+}
+
 .user-info{
+    width: 70%;
     margin-left: 5%;
 }
 
@@ -222,3 +237,5 @@ button[type="submit"] {
   .click-button:active {
     transform: scale(0.9);
   }
+
+  

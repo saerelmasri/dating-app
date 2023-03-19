@@ -1,4 +1,5 @@
 const jwtToken = localStorage.getItem('jwt_token');
+const current_id = localStorage.getItem('user_id');
 const urlParams = new URLSearchParams(window.location.search);
 const user_id = urlParams.get('id');
 const baseURL ='http://127.0.0.1:8000/'
@@ -10,7 +11,7 @@ axios({
         Authorization: `Bearer ${jwtToken}`
     },
     data:{
-        user_id: 2
+        user_id: user_id
     }
 }).then((res) => {
     const user_info = res.data.data;
@@ -31,7 +32,7 @@ axios({
         Authorization: `Bearer ${jwtToken}`
     },
     data: {
-        user_id: 2
+        user_id: user_id
     }
 }).then((res) => {
     const user_bio = res.data.data;
@@ -59,8 +60,8 @@ document.querySelector('.favorite').onclick = () => {
         method:'post',
         url: baseURL + 'api/user/addFavorite',
         data: {
-            user_id: 5,
-            user_favorite_id: 2
+            user_id: current_id,
+            user_favorite_id: user_id
         },
         headers:{
             Authorization: `Bearer ${jwtToken}`

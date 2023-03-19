@@ -28,7 +28,6 @@ const fetch = async() => {
         }
     }).then((res) => {
         const data = res.data.data;
-        console.log(data);
         displayUser(data);
     }).catch((err) => {
         console.log(err);
@@ -81,6 +80,7 @@ document.querySelector('#action-clear').onclick = () => {
 const displayUser = (response) => {
     const users = response.map(user => {
         return{
+            id: user.id,
             first_name: user.first_name,
             last_name: user.last_name,
             age: user.age,
@@ -89,13 +89,27 @@ const displayUser = (response) => {
     });
     users.forEach(user => {
         const markup = `<div class="user">
-                <div class="user-img"></div>
-                <div class="user-info">
-                    <h2>${user.first_name} ${user.last_name}, ${user.age}</h2>
-                    <h2 class="user-location">${user.location}</h2>
+            <div class="user-img"></div>
+                <div class="action">
+                    <div class="user-info">
+                        <h2>${user.first_name} ${user.last_name}, ${user.age}</h2>
+                        <h2 class="user-location">${user.location}</h2>
+                    </div>
+                    <div class="button-side">
+                        <button type="submit" data-id="${user.id}" id="check-action">Check</button>
+                    </div>
                 </div>
             </div>`
         const element = document.createRange().createContextualFragment(markup);
+        const buttons = element.querySelectorAll('#check-action')
+        buttons.forEach((button) => {
+            const id = button.getAttribute("data-id");
+
+            button.addEventListener('click', () => {
+                window.location.href = `profile-description.html?id=${id}`;
+            });
+        });  
         document.querySelector(".users-profiles").appendChild(element);
-    });
+    }
+    );
 }
