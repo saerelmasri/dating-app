@@ -9,4 +9,8 @@ class InterestedRelationship extends Model
 {
     use HasFactory;
     protected $table = 'interested_in_relation';
+    protected $fillable = [
+        'user_id',
+        'relation_type_id'
+    ];
 }

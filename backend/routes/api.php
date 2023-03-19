@@ -19,6 +19,7 @@ Route::group([
     Route::post('/signup', [AccountController::class, 'signup']);
     Route::post('/login', [AccountController::class, 'login']);
     Route::post('/login-extra', [ExtraInfoController::class, 'addInfo']);
+    Route::post('/login-relation', [ExtraInfoController::class, 'addRelation']);
     Route::get('/user-profile', [AccountController::class, 'userProfile']); 
     Route::post('/logout', [AccountController::class, 'logout']);
     
