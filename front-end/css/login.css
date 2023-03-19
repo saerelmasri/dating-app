@@ -100,3 +100,8 @@ form{
     border: none;
     cursor: pointer;
 }
+
+.buttonAnimation:focus {
+    outline: none;
+    transform: scale(1.1);
+}
