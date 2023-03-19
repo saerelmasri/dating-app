@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class FilterController extends Controller
 {
     public function filter(Request $request){
+        
         $query = User::query();
 
         if ($request->has('first')) {
@@ -27,6 +28,13 @@ class FilterController extends Controller
         }
 
         $users = $query->get();
+
+        if ($users->isEmpty()) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'No users found'
+            ], 404);
+        }
 
         return response()->json([
             'data' => $users,
