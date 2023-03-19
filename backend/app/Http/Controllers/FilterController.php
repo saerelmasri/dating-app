@@ -44,7 +44,7 @@ class FilterController extends Controller
 
      public function index(Request $request){
         try {
-            $excludeUserId = $request->query('exclude_user_id');
+            $excludeUserId = $request->input('exclude_user_id');
             $users = User::where('id', '!=', $excludeUserId)->get();
             return response()->json([
                 'data' => $users,

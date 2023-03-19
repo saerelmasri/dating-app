@@ -23,13 +23,26 @@ Route::group([
     Route::post('/logout', [AccountController::class, 'logout']);
     
 });
+Route::middleware('jwt.verify')-> group(function(){
+    Route::group([
+        'prefix'=>'filter'
+    ], function($router){
+        Route::get('/users', [FilterController::class, 'filter']);
+        Route::post('/list', [FilterController::class, 'index']);
+    });
 
-Route::group([
-    'prefix'=>'filter'
-], function($router){
-    Route::get('/users', [FilterController::class, 'filter']);
-    Route::get('/list', [FilterController::class, 'index']);
+    Route::group([
+        'prefix'=>'user'
+    ], function($router){
+        Route::post('/addFavorite', [FavoriteUsersController::class, 'addFavorite']);
+        Route::post('/removeFavorite', [FavoriteUsersController::class, 'removeFavorite']);
+        Route::get('/allFavorite/{id}', [FavoriteUsersController::class, 'allFavorite']);
+        Route::post('/addBlocked', [BlockedUsersController::class, 'addBlock']);
+        Route::post('/removeBlocked', [BlockedUsersController::class, 'removeBlocked']);
+        Route::get('/allBlocked/{id}', [BlockedUsersController::class, 'allBlock']);
+    });
 });
+
 
 Route::group([
     'prefix'=>'photos'
@@ -39,13 +52,3 @@ Route::group([
     Route::delete('/remove/{id}', [PhotoController::class, 'removePhoto']);
 });
 
-Route::group([
-    'prefix'=>'user'
-], function($router){
-    Route::post('/addFavorite', [FavoriteUsersController::class, 'addFavorite']);
-    Route::post('/removeFavorite', [FavoriteUsersController::class, 'removeFavorite']);
-    Route::get('/allFavorite/{id}', [FavoriteUsersController::class, 'allFavorite']);
-    Route::post('/addBlocked', [BlockedUsersController::class, 'addBlock']);
-    Route::post('/removeBlocked', [BlockedUsersController::class, 'removeBlocked']);
-    Route::get('/allBlocked/{id}', [BlockedUsersController::class, 'allBlock']);
-});
