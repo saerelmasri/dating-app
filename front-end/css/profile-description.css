@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu';
+}
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #C85250;
+}
+.card{
+    width: 30%;
+    height: 95vh;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+.card-img{
+    border: 1px solid black;
+    width: 100%;
+    height: 50%;
+    border-radius: 30px 30px 0 0;
+    background-color: black;
+}
+.card-info{
+    background-color: #E9EAE0;
+    border: 1px solid black;
+    width: 100%;
+    height: 50%;
+    border-radius: 0 0 30px 30px;
+    display: flex;
+    justify-content: center;
+}
+.card-info .info{
+    width: 80%;
+    height: 80%;
+}
+.info h3{
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-decoration: underline;
+}
+.info p{
+    font-weight: 200;
+    font-size: 18px;
+    margin-top: 0;
+}
+.info ul{
+    font-size: 20px;
+    list-style: none;
+    margin-bottom: 0;
+}
+.info li{
+    margin-top: 0;
+    margin-bottom: 1%;
+}
+.info1{
+    display: flex;
+}
+.info1 h2{
+    font-size: 30px;
+    margin-right: 5%;
+}
+.buttons-action{
+    width: 90%;
+    height: 20%;
+    display: flex;
+    margin-top: 5%;
+    margin-left: 5%;
+    justify-content: space-around;
+}
+.favorite, .message, .block{
+    width: 20%;
+    height: 100%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.favorite{
+    background-image: url('../assets/heart.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 70%;
+}
+.message{
+    background-image: url('../assets/message.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 70%;
+}
+.block{
+    background-image: url('../assets/ban.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 70%;
+}
+.return{
+    width: 5%;
+    height: 10%;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #E9EAE0;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+  .click-button {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .click-button:active {
+    transform: scale(0.9);
+  }
