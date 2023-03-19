@@ -1,28 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Picture</title>
-    <link rel="stylesheet" href="/css/profile-pic.css">
+    <title>Upload Profile Picture</title>
+	<link rel="stylesheet" href="css/profile-pic.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="pic-box">
-            <h1>Add a Profile Picture</h1>
-            <div class="profile-box">
-                <input type="file" id="file-upload" name="file" class="img" placeholder="Please choose a profile pic">
-                <h1>User Name</h1>
-                <p>Lorem ipsum dolor sit amet consectetur 
-                    adipisicing elit. Quo consectetur enim veniam, 
-                    earum in dignissimos ipsa dolor perferendis id 
-                    qui quos soluta, accusamus ea ducimus excepturi
-                </p>
-                <button>Upload Picture</button>
+	<div class="container">
+        <h1>Upload Profile Picture</h1>
+        <div class="upload-container">
+          <div class="profile-pic">
+            <img id="profilePicPreview" src="#" alt="Profile Picture Preview" />
+            <label for="profilePicUpload" class="upload-btn">
+              Upload Profile Picture
+            </label>
+            <input id="profilePicUpload" type="file" accept="image/*" />
+          </div>
+          <div class="additional-pics">
+            <div class="additional-pic">
+              <img id="additionalPic1Preview" src="#" alt="Additional Picture 1 Preview" />
+              <label for="additionalPic1Upload" class="upload-btn">
+                Add Picture
+              </label>
+              <input id="additionalPic1Upload" type="file" accept="image/*" />
             </div>
+            <div class="additional-pic">
+              <img id="additionalPic2Preview" src="#" alt="Additional Picture 2 Preview" />
+              <label for="additionalPic2Upload" class="upload-btn">
+                Add Picture
+              </label>
+              <input id="additionalPic2Upload" type="file" accept="image/*" />
+            </div>
+            <div class="additional-pic">
+              <img id="additionalPic3Preview" src="#" alt="Additional Picture 3 Preview" />
+              <label for="additionalPic3Upload" class="upload-btn">
+                Add Picture
+              </label>
+              <input id="additionalPic3Upload" type="file" accept="image/*" />
+            </div>
+          </div>
+          <button type="submit" id="action-save">Save Images</button>
+
         </div>
-    </div>
-    
+      </div>
+    <script src="js/profile-pic.js"></script>
 </body>
 </html>
