@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="css/extra-info.css">
-    <script src="axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.js"></script>
 </head>
 <body>
     <header>
@@ -22,7 +22,7 @@
             <div class="register-img"></div>
             <div class="register-form">
                 <h1>Register</h1>
-                <form >
+                <form method="post">
                     <label for="hobbie1">Hobbie #1</label><br>
                     <input type="text" name="hobbie1" id="hobbie1"><br>
                     <label for="hobbie2">Hobbie #2</label><br>
@@ -31,7 +31,6 @@
                     <input type="text" name="hobbie3" id="hobbie3"><br>
                     <label for="bio">Your Bio</label><br>
                     <input type="text" name="bio" id="bio"><br>
-                    <label for="gender">What are you interest in?</label><br>
                 </form>
                 <button id="register-action">Register</button>
             </div>
