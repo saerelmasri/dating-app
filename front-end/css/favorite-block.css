@@ -120,6 +120,11 @@ body{
     height: 100vh;
     background-color: #E9EAE0;
 }
+.main-panel-block{
+    width: 80%;
+    height: 100vh;
+    background-color: #E9EAE0;
+}
 .row-user{
     border: 1px solid black;
     display: flex;

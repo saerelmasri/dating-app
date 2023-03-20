@@ -73,7 +73,24 @@ document.querySelector('#action-clear').onclick = () => {
     fetch()
 }
 
-
+const block = document.querySelectorAll('.icon3, #block');
+block.forEach(element => {
+  element.onclick = () => {
+    window.location.href = 'block.html';
+  };
+});
+const favorite = document.querySelectorAll('.icon2, #favorite');
+favorite.forEach(element => {
+  element.onclick = () => {
+    window.location.href = 'favorite.html';
+  };
+});
+const logout = document.querySelectorAll('.icon5, #logout');
+logout.forEach(element => {
+  element.onclick = () => {
+    window.location.href = 'favorite.html';
+  };
+});
 
 
 

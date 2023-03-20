@@ -6,7 +6,7 @@ const baseURL ='http://127.0.0.1:8000/'
 
 axios({
     method:'post',
-    url: baseURL + 'api/userById',
+    url: baseURL + 'api/filter/userById',
     headers: {
         Authorization: `Bearer ${jwtToken}`
     },
@@ -27,7 +27,7 @@ axios({
 });
 axios({
     method:'post',
-    url: baseURL + 'api/userBio',
+    url: baseURL + 'api/filter/userBio',
     headers: {
         Authorization: `Bearer ${jwtToken}`
     },
@@ -81,8 +81,8 @@ document.querySelector('.block').onclick = () => {
         method:'post',
         url: baseURL + 'api/user/addBlocked',
         data: {
-            user_id: 5,
-            user_blocked_id: 2
+            user_id: current_id,
+            user_blocked_id: user_id
         },
         headers:{
             Authorization: `Bearer ${jwtToken}`

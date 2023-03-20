@@ -237,5 +237,12 @@ button[type="submit"] {
   .click-button:active {
     transform: scale(0.9);
   }
-
+  .icon5{
+    width: 20%;
+    height: 100%;
+    background-image: url('../assets/logout.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
   
