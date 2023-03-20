@@ -74,6 +74,44 @@ document.querySelector('.favorite').onclick = () => {
 }
 document.querySelector('.message').onclick = () => {
     document.querySelector('.message').classList.add('click-button');
+    //Check if there is a conversation between current user and user from profile
+    axios({
+        method:'POST',
+        url: baseURL + 'api/chat/getConversation',
+        data: {
+            user1_id: current_id,
+            user2_id: user_id
+        },
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }).then((res) => {
+        //If no conversation create a conversation
+        const response = res.data.data;
+        const conversationId = response['conversation_id'];
+        if(response['status'] === 404){
+            axios({
+                method: 'post',
+                url: baseURL + 'api/chat/createConversation',
+                data:{
+                    user1_id: current_id,
+                    user2_id: user_id
+                },
+                headers:{
+                    Authorization: `Bearer ${jwtToken}`
+                }
+            }).then((res) => {
+                const conver_id = res.data.data;
+                window.location.href = `chatbox.html?conv_id=${conver_id}`;
+            }).catch((err) => {
+                console.log(err);
+            })
+        }else{
+            window.location.href = `chtbox.html?conv_id=${conversationId}`;
+        }
+    }).catch((err) => {
+        console.log(err);
+    })
 }
 document.querySelector('.block').onclick = () => {
     document.querySelector('.block').classList.add('click-button');
