@@ -88,7 +88,16 @@ favorite.forEach(element => {
 const logout = document.querySelectorAll('.icon5, #logout');
 logout.forEach(element => {
   element.onclick = () => {
-    window.location.href = 'favorite.html';
+    axios({
+        method:'POST',
+        url: baseURL + 'api/auth/logout',
+        headers:{
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }).then((res) => {
+        window.localStorage.clear();
+        window.location.href = 'login.html';
+    })
   };
 });
 
