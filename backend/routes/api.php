@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ExtraInfoController;
 use App\Http\Controllers\BlockedUsersController;
+use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\FavoriteUsersController;
 
 
@@ -36,8 +38,6 @@ Route::middleware('jwt.verify')-> group(function(){
         Route::post('/userBio', [FilterController::class, 'getBio']);
         
     });
-    
-
     Route::group([
         'prefix'=>'user'
     ], function($router){
@@ -47,6 +47,14 @@ Route::middleware('jwt.verify')-> group(function(){
         Route::post('/addBlocked', [BlockedUsersController::class, 'addBlock']);
         Route::post('/removeBlocked', [BlockedUsersController::class, 'removeBlocked']);
         Route::get('/allBlocked/{id}', [BlockedUsersController::class, 'allBlock']);
+    });
+    Route::group([
+        'prefix'=>'chat'
+    ], function($router){
+        Route::post('/createConversation', [ConversationController::class, 'createConversation']);
+        Route::get('/allConversation/{id}', [ConversationController::class, 'allConversations']);
+        Route::get('/conversation/{id}', [MessageController::class, 'conversation_message']);
+        Route::post('/message', [MessageController::class, 'message']);
     });
 });
 
