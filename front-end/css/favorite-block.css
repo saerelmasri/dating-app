@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu';
+}
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+.side-bar{
+    width: 20%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #C85250;
+}
+.side-bar h1{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 61px;
+}
+.profile-container{
+    background-color: white;
+    width: 90%;
+    height: 15%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+}
+.img{
+    border: 1px solid black;
+    width: 30%;
+    height: 70%;
+    border-radius: 50%;
+}
+.info{
+    width: 60%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.info h1{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 36px;
+}
+.action-buttons{    
+    width: 100%;
+    height: 20%;
+    margin-top: 5%;
+}
+.row-div{
+    width: 100%;
+    height: 30%;
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.row-div:hover{
+    color: white;
+}
+.row-div h1{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 36px;
+}
+.icon1{
+    width: 20%;
+    height: 100%;
+    background-image: url('../assets/message.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.icon2{
+    width: 20%;
+    height: 100%;
+    background-image: url('../assets/heart.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.icon3{
+    width: 20%;
+    height: 100%;
+    background-image: url('../assets/ban.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.icon4{
+    width: 20%;
+    height: 100%;
+    background-image: url('../assets/home.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.icon5{
+    width: 20%;
+    height: 100%;
+    background-image: url('../assets/logout.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.main-panel{
+    width: 80%;
+    height: 100vh;
+    background-color: #E9EAE0;
+}
+.row-user{
+    border: 1px solid black;
+    display: flex;
+    height: 80px;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 8px;
+    text-align: center;
+}
+.row-user button {
+    width: 110px;
+    height: 45px;
+    border-radius: 10px;
+    border: none;
+    font-size: medium;
+    background-color: #FF5800;
+    color: white;
+    cursor: pointer;
+}
+.row-user h1{
+    width: 300px;
+}
+
+
+
+
+button[type="submit"] {
+    width: 10%;
+    height: 5vh;
+    background-color: #C85250;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .click-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .click-button:active {
+    transform: scale(0.9);
+  }
+
+  
