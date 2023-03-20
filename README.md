@@ -1,1 +1,3 @@
 # dating-app
+
+This project is about a simple dating website. This website idea goes more to become a social media website, where users can register with normal credentials and store to be display then a small bio and their hobbies. This dating website was implemented using APIs created on Laravel from scratch (The Laravel folder where the APIs where created is in this repository under the folder of "Backend"). Also, the website works with dynamic data from a database created on MySQL(The database file is attached in this repository). This website works with JWT tokens to secure the privacy of the user. 
