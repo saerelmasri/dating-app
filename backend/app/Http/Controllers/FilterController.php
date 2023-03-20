@@ -96,4 +96,6 @@ class FilterController extends Controller
             ], 500);
         }
     }
+
+    
 }

@@ -25,23 +25,25 @@ Route::group([
     
 });
 
-Route::post('/userById', [FilterController::class, 'getById']);
-Route::post('/userBio', [FilterController::class, 'getBio']);
+
 Route::middleware('jwt.verify')-> group(function(){
     Route::group([
         'prefix'=>'filter'
     ], function($router){
         Route::get('/users', [FilterController::class, 'filter']);
         Route::post('/list', [FilterController::class, 'index']);
+        Route::post('/userById', [FilterController::class, 'getById']);
+        Route::post('/userBio', [FilterController::class, 'getBio']);
         
     });
+    
 
     Route::group([
         'prefix'=>'user'
     ], function($router){
         Route::post('/addFavorite', [FavoriteUsersController::class, 'addFavorite']);
         Route::post('/removeFavorite', [FavoriteUsersController::class, 'removeFavorite']);
-        Route::get('/allFavorite/{id}', [FavoriteUsersController::class, 'allFavorite']);
+        Route::post('/allFavorite', [FavoriteUsersController::class, 'allFavorite']);
         Route::post('/addBlocked', [BlockedUsersController::class, 'addBlock']);
         Route::post('/removeBlocked', [BlockedUsersController::class, 'removeBlocked']);
         Route::get('/allBlocked/{id}', [BlockedUsersController::class, 'allBlock']);

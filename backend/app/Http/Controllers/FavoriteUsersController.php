@@ -58,9 +58,15 @@ class FavoriteUsersController extends Controller
         ], 200);
     }
 
-    public function allFavorite($id){
-        $favoriteUsers = FavoriteUsers::where('user_id', $id)->get();
-        
+    public function allFavorite(Request $request){
+        if (!$request->isMethod('POST')) {
+            return response()->json([
+                'status' => 405,
+                'message' => 'Method Not Allowed'
+            ], 405);
+        }
+        $user_id = $request->input('user_id');
+        $favoriteUsers = FavoriteUsers::where('user_id', $user_id)->get();
         return response()->json([
             'status' => 200,
             'data' => $favoriteUsers,
